@@ -1,14 +1,9 @@
-import 'dart:math';
-
-import 'package:dahae_mobile/screens/habit/dialog/day_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dahae_mobile/models/day_of_week.dart';
-import '../../models/habit.dart';
+import 'package:dahae_mobile/data/enums/day_of_week.dart';
+import 'package:dahae_mobile/data/models/habit.dart';
 
 // inner Boxes
-import './dialog/text_box.dart';
 import './dialog/title_box.dart';
 import './dialog/days_box.dart';
 import './dialog/detail_box.dart';
@@ -45,8 +40,7 @@ class _EditDialogState extends State<EditDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+    double dialogWidth = MediaQuery.of(context).size.width;
 
     return Dialog(
       shape: const RoundedRectangleBorder(
@@ -73,7 +67,7 @@ class _EditDialogState extends State<EditDialog> {
         // width: max(MediaQuery.of(context).size.width, 350),
         // height: MediaQuery.of(context).size.height * 3 / 5,
         width: 350,
-        height: 500,
+        height: 450,
         //padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -103,25 +97,6 @@ class _EditDialogState extends State<EditDialog> {
                       color: Theme.of(context).primaryColor.withOpacity(0.7),
                     ),
                     PeriodBox(startDate: startDate, endDate: endDate),
-                    Container(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(),
-                          ),
-                          OutlinedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              // 완료 눌렀을 때 DB에 data update 되도록 마저 구현하기
-                            },
-                            child: Text(
-                              "완료",
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -3,26 +3,14 @@ import 'package:go_router/go_router.dart';
 
 import 'screens/screens.dart';
 
-// ShellRoute를 위한 Key설정
-GlobalKey<NavigatorState> _rootkey = GlobalKey<NavigatorState>();
-GlobalKey<NavigatorState> _homekey = GlobalKey<NavigatorState>();
+class AppRouter {
+  static GoRouter get router => _router;
 
-class DahaeApp extends StatelessWidget {
-  DahaeApp({super.key});
+  // ShellRoute를 위한 Key설정
+  static final GlobalKey<NavigatorState> _rootkey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> _homekey = GlobalKey<NavigatorState>();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      theme: _theme,
-      builder: (context, child) => ScrollConfiguration(
-        behavior: DiableScrollGlow(),
-        child: child ?? Container(),
-      ),
-    );
-  }
-
-  final GoRouter _router = GoRouter(
+  static final GoRouter _router = GoRouter(
     navigatorKey: _rootkey,
     initialLocation: '/login',
     routes: [
@@ -41,7 +29,6 @@ class DahaeApp extends StatelessWidget {
         builder: (context, state) {
           return LogInScreen();
         },
-        //redirect: (_, __) => '/habit',
       ),
       GoRoute(
         path: '/habit',
@@ -77,42 +64,6 @@ class DahaeApp extends StatelessWidget {
         ],
       )
     ],
-  );
-
-  final ThemeData _theme = ThemeData(
-    //fontFamily: Inter,
-    backgroundColor: const Color(0xFFF5EFFF),
-    primaryColor: const Color(0xFFD3BFF9),
-    highlightColor: const Color(0xFF925FF0),
-    focusColor: const Color(0xFFC4F954),
-    hintColor: const Color(0xFF969696),
-    errorColor: const Color(0xFF925FF0),
-    textTheme: const TextTheme(
-        subtitle1: TextStyle(
-            color: Color(0xFFD3BFF9),
-            fontWeight: FontWeight.w600,
-            fontSize: 14),
-        subtitle2: TextStyle(
-          color: Color(0xFF925FF0),
-          fontWeight: FontWeight.w700,
-          fontSize: 14,
-        ),
-        bodyText1: TextStyle(
-          color: Color(0xFF432876),
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-        ),
-        bodyText2: TextStyle(
-          color: Color(0xFF0F0324),
-          fontWeight: FontWeight.w700,
-          fontSize: 16,
-          overflow: TextOverflow.ellipsis,
-        ),
-        caption: TextStyle(
-          color: Color(0xFF969696),
-          fontWeight: FontWeight.w500,
-          fontSize: 13,
-        )),
   );
 }
 

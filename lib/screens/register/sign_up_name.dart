@@ -1,33 +1,36 @@
-import 'package:dahae_mobile/app.dart';
-import 'package:dahae_mobile/screens/habit/habit_screen.dart';
-import 'package:dahae_mobile/screens/login/sign_up/sign_up_certification.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:io' show Platform;
 
-import '../../../api/api.dart';
+import 'package:dahae_mobile/data/api/api.dart';
 import 'package:dahae_mobile/screens/login/login_component.dart';
-import 'package:dahae_mobile/screens/route_animation.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpNameScreen extends StatefulWidget {
+  const SignUpNameScreen({
+    super.key,
+    required this.email,
+    required this.password,
+  });
+
+  final String email;
+  final String password;
+
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignUpNameScreen> createState() => _SignUpNameScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpNameScreenState extends State<SignUpNameScreen> {
   bool _isDup = false;
   final formKey = GlobalKey<FormState>();
   //final emailController = TextEditingController();
-  String email = '';
-  String authCode = '';
-  FocusNode _emailFocus = new FocusNode();
-  FocusNode _passwordFocus = new FocusNode();
+  FocusNode _nameFocus = FocusNode();
+  String name = '';
+  String os = '';
+  var json;
 
   @override
   Widget build(BuildContext context) {
     //WARNING MESSAGE
-    Center duplicateEmail = const Center(
-      child: Text('중복된 이메일입니다.',
+    Center duplicateName = const Center(
+      child: Text('중복된 닉네임입니다.',
           style: TextStyle(
               color: Color(0xFFFA0000),
               fontSize: 12,
@@ -39,44 +42,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.17),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2),
           const Image(
               image: AssetImage('assets/images/logo_3d.png'), height: 130),
           const SizedBox(height: 25),
-          SignUpText(text: _isDup ? '이메일을 다시' : '이메일을'),
-          SizedBox(height: 30, child: _isDup ? duplicateEmail : Container()),
+          const SignUpText(text: '닉네임을'),
+          SizedBox(height: 30, child: _isDup ? duplicateName : Container()),
           SignUpInputTextBox(
-            label: '이메일',
-            focusNode: _emailFocus,
+            label: '닉네임',
+            focusNode: FocusNode(),
             onSaved: (val) {
               setState(() {
-                email = val;
+                name = val;
               });
             },
             onChanged: (val) {},
-            validator: (val) => CheckValidate().validateEmail(_emailFocus, val),
+            validator: (val) => CheckValidate().validateName(_nameFocus, val),
           ),
         ],
       ),
     );
 
     SignUpBottomButton bottomButton = SignUpBottomButton(
-      text: '인증번호 받기',
+      text: '이걸로 하기',
       onPressed: () async {
         if (formKey.currentState?.validate() == true) {
           formKey.currentState?.save();
-          //중복확인하는 method 넣기
-          if (await isEmailDuplicate(email)) {
+          // 서버에 중복 확인 보냄
+          if (await isNameDuplicate(name)) {
             setState(() {
               _isDup = true;
             });
           } else {
             _isDup = false;
-            authCode = await getEmailAuthCode(email);
-            PageRouteWithAnimation pageRouteWithAnimation =
-                PageRouteWithAnimation(
-                    SignUpCertScreen(email: email, authCode: authCode));
-            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            os = Theme.of(context).platform == TargetPlatform.android
+                ? 'ANDROID'
+                : 'IOS';
+            // json = {
+            //   "email": widget.email,
+            //   "password": widget.password,
+            //   "name": name,
+            //   "os": os
+            // };
+            // server에 put 함
+            if (await userRegister(widget.email, widget.password, name, os) ==
+                200) {
+              print('성공');
+              //GoRouter.of(context).go('/habit');
+            } else {
+              //로딩중
+              //print(json);
+            }
           }
         }
       },

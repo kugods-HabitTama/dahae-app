@@ -1,11 +1,8 @@
-import 'package:dahae_mobile/app.dart';
-import 'package:dahae_mobile/screens/habit/habit_screen.dart';
-import 'package:dahae_mobile/screens/login/sign_up/sign_up_name.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
+import 'package:dahae_mobile/screens/register/sign_up_name.dart';
 import 'package:dahae_mobile/screens/login/login_component.dart';
-import 'package:dahae_mobile/screens/route_animation.dart';
+import 'package:dahae_mobile/common/util/route_animation.dart';
 
 class SignUpPWScreen extends StatefulWidget {
   const SignUpPWScreen({

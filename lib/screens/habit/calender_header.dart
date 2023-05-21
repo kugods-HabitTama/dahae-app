@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/day_of_week.dart';
+import 'package:dahae_mobile/data/enums/day_of_week.dart';
 
 // TODO: 클릭했을 때 달력이 만들어져서 보여야되고, 다시 클릭하면 원상복구됨.
 class CalenderHeader extends StatefulWidget {
@@ -58,16 +58,6 @@ class _CalenderHeaderState extends State<CalenderHeader> {
               _week = !_week;
             });
           }),
-          onVerticalDragUpdate: (DragUpdateDetails details) {
-            setState(() {
-              if (_week & (details.delta.dy > 0)) {
-                _week = !_week;
-              }
-              else if (!_week & (details.delta.dy < 0)) {
-                _week = !_week;
-              }
-            });
-          },
           behavior: HitTestBehavior.translucent,
           child: Stack(
             alignment: Alignment.center,
@@ -151,7 +141,7 @@ class _CalenderHeaderState extends State<CalenderHeader> {
         Text(
           DateFormat('yyyy 년 MM 월 dd 일').format(widget.selectedDate),
           textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 12, color:Color.fromARGB(255, 67, 40, 118)),
+          style: const TextStyle(fontSize: 12),
         ),
         const SizedBox(height: 13), // 간격 띄우기
         Row(
@@ -215,7 +205,6 @@ class _CalenderHeaderState extends State<CalenderHeader> {
               crossAxisCount: 7, // 열 개수
               mainAxisSpacing: 11,
               crossAxisSpacing: 13,
-              physics: const NeverScrollableScrollPhysics(),
               children: List<Widget>.generate(
                   monthDays[widget.selectedDate.month - 1] +
                       firstDay.weekday % 7, (index) {
