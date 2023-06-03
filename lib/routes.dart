@@ -12,7 +12,7 @@ class AppRouter {
 
   static final GoRouter _router = GoRouter(
     navigatorKey: _rootkey,
-    initialLocation: '/login',
+    initialLocation: '/initial',
     routes: [
       GoRoute(
         path: '/',

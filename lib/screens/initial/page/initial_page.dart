@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:dahae_mobile/common/util/route_animation.dart';
-import 'package:dahae_mobile/screens/login/login_component.dart';
-import 'package:dahae_mobile/screens/login/login_screen.dart';
-import 'package:dahae_mobile/screens/register/register_email.dart';
+import 'package:dahae_mobile/screens/initial/view/routing_buttons.dart';
+import 'package:dahae_mobile/screens/initial/viewmodel/initial_page_viewmodel.dart';
 
 class InitialScreen extends StatelessWidget {
-  const InitialScreen({super.key});
+  InitialScreen({super.key});
+
+  late final _viewModel = InitialPageViewModelImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +21,29 @@ class InitialScreen extends StatelessWidget {
               const Image(
                   image: AssetImage('assets/images/logo_3d.png'), height: 150),
               const SizedBox(height: 25),
-              const LoginPageText(),
+              const Text.rich(TextSpan(children: [
+                TextSpan(text: '하고 싶은 거 '),
+                TextSpan(
+                  text: '다 해 ',
+                  // style: themeData.textTheme.bodyText1
+                  //         ?.copyWith(color: themeData.highlightColor) ??
+                  //     themeData.textTheme.bodyText1
+                ),
+                TextSpan(text: '보자')
+              ])),
+              const SizedBox(height: 10),
+              const Text('다마고치 해빗 트래커'),
               const SizedBox(height: 70),
-              DahaeStartButton(
-                child: Text('처음 다 해 봐요!'),
-                onPressed: () {
-                  PageRouteWithAnimation pageRouteWithAnimation =
-                      PageRouteWithAnimation(RegisterPage_Email());
-                  Navigator.push(
-                      context, pageRouteWithAnimation.slideRitghtToLeft());
-                },
-              ),
-              const SizedBox(height: 20),
-              DahaeStartButton(
-                child: Text('다 해 본 적 있어요'),
-                onPressed: () {
-                  PageRouteWithAnimation pageRouteWithAnimation =
-                      PageRouteWithAnimation(LoginScreen());
-                  Navigator.push(
-                      context, pageRouteWithAnimation.slideRitghtToLeft());
-                  //MaterialPageRoute(
-                  //builder: (_) => SignInScreen(),),
-                },
-              ),
+              routingButtons(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget routingButtons() {
+    return ChangeNotifierProvider<InitialPageViewModelImpl>.value(
+        value: _viewModel, child: RoutingButtons());
   }
 }
