@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
