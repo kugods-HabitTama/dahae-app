@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:go_router/go_router.dart';
 
 import 'package:dahae_mobile/common/util/route_animation.dart';
 import 'package:dahae_mobile/screens/login/login_component.dart';
-import 'package:dahae_mobile/screens/login/login_screen.dart';
+import 'package:dahae_mobile/screens/initial/page/initial_page.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashPageState extends State<SplashPage> {
   @override
   initState() {
     super.initState();

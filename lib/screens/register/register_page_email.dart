@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:dahae_mobile/common/util/route_animation.dart';
@@ -5,12 +6,12 @@ import 'package:dahae_mobile/data/api/api.dart';
 import 'package:dahae_mobile/screens/register/sign_up_certification.dart';
 import 'package:dahae_mobile/screens/login/login_component.dart';
 
-class SignUpScreen extends StatefulWidget {
+class RegisterPage_Email extends StatefulWidget {
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<RegisterPage_Email> createState() => _RegisterPage_Email();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _RegisterPage_Email extends State<RegisterPage_Email> {
   bool _isDup = false;
   final formKey = GlobalKey<FormState>();
   //final emailController = TextEditingController();

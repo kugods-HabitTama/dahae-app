@@ -21,13 +21,13 @@ class AppRouter {
       GoRoute(
         path: '/splash',
         builder: (context, state) {
-          return const SplashScreen();
+          return const SplashPage();
         },
       ),
       GoRoute(
-        path: '/login',
+        path: '/initial',
         builder: (context, state) {
-          return LogInScreen();
+          return InitialScreen();
         },
       ),
       GoRoute(
