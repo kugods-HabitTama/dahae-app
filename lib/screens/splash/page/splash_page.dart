@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:dahae_mobile/common/util/route_animation.dart';
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 import 'package:dahae_mobile/screens/initial/page/initial_page.dart';
 
 class SplashPage extends StatefulWidget {

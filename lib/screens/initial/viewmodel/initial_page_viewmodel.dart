@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'initial_page_viewmodel_abs.dart';
 import 'package:dahae_mobile/common/util/route_animation.dart';
-import 'package:dahae_mobile/screens/login/login_screen.dart';
+import 'package:dahae_mobile/screens/login/page/login_screen.dart';
 import 'package:dahae_mobile/screens/register/register_page_email.dart';
 
 class InitialPageViewModelImpl
@@ -11,7 +11,7 @@ class InitialPageViewModelImpl
   @override
   void goLoginPage(BuildContext context) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(LoginScreen());
+        PageRouteWithAnimation(LoginPage());
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 

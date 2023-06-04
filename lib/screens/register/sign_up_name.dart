@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:dahae_mobile/data/api/api.dart';
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 
 class SignUpNameScreen extends StatefulWidget {
   const SignUpNameScreen({
@@ -48,17 +48,17 @@ class _SignUpNameScreenState extends State<SignUpNameScreen> {
           const SizedBox(height: 25),
           const SignUpText(text: '닉네임을'),
           SizedBox(height: 30, child: _isDup ? duplicateName : Container()),
-          SignUpInputTextBox(
-            label: '닉네임',
-            focusNode: FocusNode(),
-            onSaved: (val) {
-              setState(() {
-                name = val;
-              });
-            },
-            onChanged: (val) {},
-            validator: (val) => CheckValidate().validateName(_nameFocus, val),
-          ),
+          // SignUpInputTextBox(
+          //   label: '닉네임',
+          //   focusNode: FocusNode(),
+          //   onSaved: (val) {
+          //     setState(() {
+          //       name = val;
+          //     });
+          //   },
+          //   onChanged: (val) {},
+          //   validator: (val) => Validators.validateName(_nameFocus, val),
+          // ),
         ],
       ),
     );

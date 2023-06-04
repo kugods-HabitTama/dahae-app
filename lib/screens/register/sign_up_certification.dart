@@ -1,8 +1,9 @@
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/util/route_animation.dart';
 import 'sign_up_password.dart';
+import 'package:dahae_mobile/common/util/validators.dart';
 
 class SignUpCertScreen extends StatefulWidget {
   const SignUpCertScreen({
@@ -48,18 +49,17 @@ class _SignUpCertScreenState extends State<SignUpCertScreen> {
           const SignUpText(text: '인증번호를', auth: true),
           SizedBox(
               height: 30, child: _isCert ? worngCertification : Container()),
-          SignUpInputTextBox(
-            label: '인증번호',
-            focusNode: _certFocus,
-            isNum: true,
-            reSend: true,
-            onSaved: (val) {
-              myAuthCode = val;
-            },
-            onChanged: (val) {},
-            validator: (val) =>
-                CheckValidate().validateCertCode(_certFocus, val),
-          ),
+          // SignUpInputTextBox(
+          //   label: '인증번호',
+          //   focusNode: _certFocus,
+          //   isNum: true,
+          //   reSend: true,
+          //   onSaved: (val) {
+          //     myAuthCode = val;
+          //   },
+          //   onChanged: (val) {},
+          //   validator: (val) => CheckValidate.validateCertCode(_certFocus, val),
+          // ),
         ],
       ),
     );

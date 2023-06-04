@@ -1,73 +1,99 @@
+import 'dart:async';
+import 'package:dahae_mobile/common/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-class AuthApi {
-  const AuthApi(this._dio);
+import 'package:dahae_mobile/common/util/dio_factory.dart';
 
-  final Dio _dio;
-  // 로그인 메커니즘을 정의한다.
-  // X
-  Future<Map<String, dynamic>> login(String email, String password) async {
-    final response = await _dio.post<Map<String, dynamic>>(
-      '/auth/login',
-      data: {'email': email, 'password': password},
-    );
-    final json = response.data!;
-    return json;
+class AuthAPI {
+  // Generate Instance
+  static final AuthAPI _authAPI = AuthAPI();
+  // Get Instance of the class
+  static AuthAPI get authAPIInstance => _authAPI;
+  // Open Dio
+  static final Dio _dio = const DioFactory(Constants.baseUrl).create();
+
+  Future register(
+      {required String phoneNumber,
+      required String password,
+      required String name,
+      required String bloodType}) async {
+    try {
+      // Internet Connection check
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.none) {
+        return "Internet Connection Invalid";
+      }
+
+      // request body
+      final data = {
+        "phoneNumber": phoneNumber,
+        "password": password,
+        "name": name,
+        "bloodType": bloodType
+      };
+      print(data);
+      // get
+      final response = await _dio.post('/auth/register', data: data);
+
+      if (response.statusCode == 201) {
+        // 회원가입 성공
+        return "Success";
+      } else {
+        // 400 : wrong pw -> 401 될수도있음
+        // 404 : wrong id
+        // 500 : server error
+        // 회원가입 실패
+        return "fail";
+      }
+    } catch (e) {
+      //test log
+      print("error");
+
+      // error handling
+    }
   }
 
-  // 회원가입 메커니즘을 정의한다.
-  Future<int> register(
-      String email, String password, String name, String os) async {
-    final response = await _dio.post<Map<String, dynamic>>(
-      '/auth/register',
-      data: {'email': email, 'password': password, 'name': name, 'os': os},
-    );
-    final json = response.statusCode!;
-    return json;
-  }
+  Future login({required String phoneNumber, required String password}) async {
+    try {
+      // Internet Connection check
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.none) {
+        return "Internet Connection Invalid";
+      }
 
-  // 이메일 중복검사하는 메커니즘을 정의한다.
-  Future<bool> isEmailDuplicate(String email) async {
-    final response = await _dio.get<String>(
-      '/auth/email/duplicate',
-      queryParameters: {'email': email},
-    );
-    final json = response.data!;
-    return json.toLowerCase() == 'true';
-  }
+      // request body
+      final data = {"phoneNumber": phoneNumber, "password": password};
 
-  // 닉네임 중복검사하는 메커니즘을 정의한다.
-  Future<bool> isNameDuplicate(String name) async {
-    final response = await _dio.get<String>(
-      '/auth/name/duplicate',
-      queryParameters: {'name': name},
-    );
-    final json = response.data!;
-    return json.toLowerCase() == 'true';
-  }
+      // get
+      print("Get");
+      final response = await _dio.post('/auth/login', data: data);
 
-  // 인증번호 메일을 보내는 메커니즘을 정의한다.
-  Future<String> getEmailAuthCode(String email) async {
-    final response = await _dio.post<String>(
-      '/auth/authenticate-email',
-      data: {'email': email},
-    );
-    final json = response.data!;
-    return json;
-  }
+      // test log
+      print(response.statusCode);
 
-  // 비밀번호를 변경하는 메커니즘을 정의한다.
-  // X
-  Future<int> changePassword(
-      String currentPassword, String targetPassword) async {
-    final response = await _dio.put<String>(
-      '/auth/password',
-      data: {
-        'currentPassword': currentPassword,
-        'targetPassword': targetPassword
-      },
-    );
-    final json = response.statusCode!;
-    return json;
+      if (response.statusCode == 201) {
+        // 로그인 성공시에 access token, refresh token 저장
+        final box = await Hive.openBox('tokens');
+        box.put('access_token', response.data['accessToken']);
+        box.put('refresh_token', response.data['refreshToken']);
+        print(response.data['accessToken']);
+
+        //test log
+        print("success");
+
+        return "Success";
+      } else {
+        // 로그인 실패 - 아이디 또는 PW가 틀렸음을 안내
+        print("fail");
+        return "Wrong ID or PW";
+      }
+    } catch (e) {
+      //test log
+      print("error");
+
+      // error handling
+    }
   }
 }

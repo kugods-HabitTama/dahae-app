@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:dahae_mobile/screens/register/sign_up_name.dart';
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 import 'package:dahae_mobile/common/util/route_animation.dart';
 
 class SignUpPWScreen extends StatefulWidget {
@@ -49,19 +49,19 @@ class _SignUpPWScreenState extends State<SignUpPWScreen> {
           const SizedBox(height: 25),
           const SignUpText(text: '비밀번호를'),
           SizedBox(height: 30, child: _isDup ? differentPassword : Container()),
-          SignUpInputTextBox(
-            label: '비밀번호',
-            password: true,
-            focusNode: FocusNode(),
-            onChanged: (val) {},
-            onSaved: (val) {
-              setState(() {
-                password = val;
-              });
-            },
-            validator: (val) =>
-                CheckValidate().validatePassword(_passwordFocus, val),
-          ),
+          // SignUpInputTextBox(
+          //   label: '비밀번호',
+          //   password: true,
+          //   focusNode: FocusNode(),
+          //   onChanged: (val) {},
+          //   onSaved: (val) {
+          //     setState(() {
+          //       password = val;
+          //     });
+          //   },
+          //   validator: (val) =>
+          //       CheckValidate().validatePassword(_passwordFocus, val),
+          // ),
           const SizedBox(height: 10),
           SignUpInputTextBox(
             label: '비밀번호 확인',

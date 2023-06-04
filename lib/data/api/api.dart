@@ -7,7 +7,7 @@ import 'package:dahae_mobile/data/models/habit_record.dart';
 import 'package:dahae_mobile/data/models/user.dart';
 import 'habit_api.dart';
 import 'account_api.dart';
-import 'auth_api.dart';
+import 'aauth_api.dart';
 
 // 사용자의 모든 해빗을 가져오는 함수
 Future<List<Habit>> getHabits() async {

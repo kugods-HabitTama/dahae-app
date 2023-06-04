@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-// Login Viewmodel
+// Login ViewModel
 abstract class LoginViewModel implements Listenable {
-  String get id;
-  String get pw;
+  String? checkValidateEmail(FocusNode focusNode, String email);
+  String? checkValidatePassword(FocusNode focusNode, String password);
 
-  set loginID(String value);
-  set loginPw(String value);
+  void findPassword();
 
-  bool get enableLoginButton;
+  void login(BuildContext context);
+  void googleLogin(BuildContext context);
+  void appleLogin(BuildContext context);
 
-  Future login(BuildContext context);
+  void goHomePage(BuildContext context) {
+    GoRouter.of(context).go('/habit');
+  }
 }

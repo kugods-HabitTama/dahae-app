@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:dahae_mobile/common/util/route_animation.dart';
 import 'package:dahae_mobile/data/api/api.dart';
 import 'package:dahae_mobile/screens/register/sign_up_certification.dart';
-import 'package:dahae_mobile/screens/login/login_component.dart';
+import 'package:dahae_mobile/screens/login/view/login_component.dart';
 
 class RegisterPage_Email extends StatefulWidget {
   @override
@@ -42,17 +41,17 @@ class _RegisterPage_Email extends State<RegisterPage_Email> {
           const SizedBox(height: 25),
           SignUpText(text: _isDup ? '이메일을 다시' : '이메일을'),
           SizedBox(height: 30, child: _isDup ? duplicateEmail : Container()),
-          SignUpInputTextBox(
-            label: '이메일',
-            focusNode: _emailFocus,
-            onSaved: (val) {
-              setState(() {
-                email = val;
-              });
-            },
-            onChanged: (val) {},
-            validator: (val) => CheckValidate().validateEmail(_emailFocus, val),
-          ),
+          // SignUpInputTextBox(
+          //   label: '이메일',
+          //   focusNode: _emailFocus,
+          //   onSaved: (val) {
+          //     setState(() {
+          //       email = val;
+          //     });
+          //   },
+          //   onChanged: (val) {},
+          //   validator: (val) => Validat().validateEmail(_emailFocus, val),
+          // ),
         ],
       ),
     );

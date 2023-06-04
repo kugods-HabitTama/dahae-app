@@ -53,7 +53,10 @@ dependencies:
 
   # dynamic ui
   flutter_screenutil: ^5.7.0
- 
+
+  # network connection
+  connectivity_plus: ^3.0.3
+
  # flutter_native_splash: ^2.2.16
 
   get:
