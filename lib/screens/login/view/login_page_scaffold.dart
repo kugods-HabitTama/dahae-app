@@ -10,10 +10,10 @@ class LoginPageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = Provider.of<LoginViewModelImpl>(context);
-    return _LoginPageScaffold(viewModel, context);
+    return _loginPageScaffold(viewModel, context);
   }
 
-  Widget _LoginPageScaffold(viewModel, context) {
+  Widget _loginPageScaffold(viewModel, context) {
     //WARNING MESSAGE
     Center wrongAccountMsg = const Center(
       child: Text('잘 못 입력하셨습니다.',

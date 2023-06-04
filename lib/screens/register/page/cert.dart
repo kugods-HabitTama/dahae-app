@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/util/route_animation.dart';
+import 'register_page_password.dart';
 import 'package:dahae_mobile/screens/register/view/login_component.dart';
-import 'package:dahae_mobile/screens/register/viewmodel/register_viewmodel.dart';
 
-class RegisterPage_Cert extends StatelessWidget {
-  RegisterPage_Cert({super.key, required this.viewModel});
+class RegisterPage_Cert extends StatefulWidget {
+  const RegisterPage_Cert({
+    super.key,
+    required this.email,
+    required this.authCode,
+  });
 
-  final RegisterViewModelImpl viewModel;
+  final String email;
+  final String authCode;
+
+  @override
+  State<RegisterPage_Cert> createState() => _RegisterPage_CertState();
+}
+
+class _RegisterPage_CertState extends State<RegisterPage_Cert> {
+  bool _isCert = false;
+  String myAuthCode = '';
+  final formKey = GlobalKey<FormState>();
+  //final emailController = TextEditingController();
+  FocusNode _certFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    return _registerPage_Cert(viewModel, context);
-  }
-
-  Widget _registerPage_Cert(viewModel, context) {
     //WARNING MESSAGE
     Center worngCertification = const Center(
       child: Text('인증번호가 일치하지 않습니다',
@@ -34,17 +47,16 @@ class RegisterPage_Cert extends StatelessWidget {
           const SizedBox(height: 25),
           const SignUpText(text: '인증번호를', auth: true),
           SizedBox(
-              height: 30,
-              child: viewModel.isCert ? worngCertification : Container()),
+              height: 30, child: _isCert ? worngCertification : Container()),
           SignUpInputTextBox(
             label: '인증번호',
-            focusNode: viewModel.certCodeFocus,
+            focusNode: _certFocus,
             isNum: true,
             reSend: true,
-            onSaved: (val) {},
-            onChanged: (val) {
-              viewModel.setCertCode(val);
+            onSaved: (val) {
+              myAuthCode = val;
             },
+            onChanged: (val) {},
             validator: (val) {},
           ),
         ],
@@ -54,12 +66,27 @@ class RegisterPage_Cert extends StatelessWidget {
     SignUpBottomButton bottomButton = SignUpBottomButton(
       text: '인증하기',
       onPressed: () async {
-        viewModel.printEmail();
+        // 입력조건 확인
+        if (formKey.currentState?.validate() == true) {
+          formKey.currentState?.save();
+          // 서버와 인증코드가 맞는지 확인
+          if (myAuthCode == widget.authCode) {
+            _isCert = false;
+            PageRouteWithAnimation pageRouteWithAnimation =
+                PageRouteWithAnimation(
+                    RegisterPage_Password(email: widget.email));
+            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+          } else {
+            setState(() {
+              _isCert = true;
+            });
+          }
+        }
       },
     );
 
     return Form(
-      key: viewModel.certCodeFormKey,
+      key: formKey,
       child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,

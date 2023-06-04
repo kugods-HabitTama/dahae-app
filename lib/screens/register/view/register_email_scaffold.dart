@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:dahae_mobile/screens/register/view/login_component.dart';
+import 'login_component.dart';
 import 'package:dahae_mobile/screens/register/viewmodel/register_viewmodel.dart';
 
-class RegisterPage_Cert extends StatelessWidget {
-  RegisterPage_Cert({super.key, required this.viewModel});
-
-  final RegisterViewModelImpl viewModel;
+class RegisterEmailScaffold extends StatelessWidget {
+  const RegisterEmailScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _registerPage_Cert(viewModel, context);
+    var viewModel = Provider.of<RegisterViewModelImpl>(context);
+    return _registerEmailScaffold(viewModel, context);
   }
 
-  Widget _registerPage_Cert(viewModel, context) {
+  Widget _registerEmailScaffold(viewModel, context) {
     //WARNING MESSAGE
-    Center worngCertification = const Center(
-      child: Text('인증번호가 일치하지 않습니다',
+    Center duplicateEmail = const Center(
+      child: Text('중복된 이메일입니다.',
           style: TextStyle(
               color: Color(0xFFFA0000),
               fontSize: 12,
@@ -32,34 +32,34 @@ class RegisterPage_Cert extends StatelessWidget {
           const Image(
               image: AssetImage('assets/images/logo_3d.png'), height: 130),
           const SizedBox(height: 25),
-          const SignUpText(text: '인증번호를', auth: true),
+          SignUpText(text: viewModel.isDup ? '이메일을 다시' : '이메일을'),
           SizedBox(
               height: 30,
-              child: viewModel.isCert ? worngCertification : Container()),
+              child: viewModel.isDup ? duplicateEmail : Container()),
           SignUpInputTextBox(
-            label: '인증번호',
-            focusNode: viewModel.certCodeFocus,
-            isNum: true,
-            reSend: true,
+            label: '이메일',
+            focusNode: viewModel.emailFocus,
             onSaved: (val) {},
             onChanged: (val) {
-              viewModel.setCertCode(val);
+              viewModel.setEmail(val);
             },
-            validator: (val) {},
+            validator: (val) =>
+                viewModel.checkValidateEmail(viewModel.emailFocus, val),
           ),
         ],
       ),
     );
 
     SignUpBottomButton bottomButton = SignUpBottomButton(
-      text: '인증하기',
+      text: '인증번호 받기',
       onPressed: () async {
         viewModel.printEmail();
+        viewModel.checkDuplicatedEmail(context, viewModel);
       },
     );
 
     return Form(
-      key: viewModel.certCodeFormKey,
+      key: viewModel.formKey,
       child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,

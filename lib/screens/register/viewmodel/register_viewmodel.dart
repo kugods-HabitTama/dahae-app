@@ -13,6 +13,7 @@ import 'package:dahae_mobile/screens/register/page/register_page_name.dart';
 // Register Viewmodel Implement
 class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   final formKey = GlobalKey<FormState>();
+  final certCodeFormKey = GlobalKey<FormState>();
   final emailFormFieldKey = GlobalKey<FormFieldState>();
   final certCodeFormFieldKey = GlobalKey<FormFieldState>();
   final passwordFormFieldKey = GlobalKey<FormFieldState>();
@@ -35,6 +36,29 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   String _certCode = '';
   String _password = '';
   String _name = '';
+
+  bool isDup = false;
+  bool isCert = false;
+
+  late final AuthAPI _authAPI;
+
+  RegisterViewModelImpl() {
+    _authAPI = AuthAPI();
+  }
+
+  printEmail() {
+    print(_email);
+  }
+
+  setIsDup() {
+    isDup = true;
+    notifyListeners();
+  }
+
+  setIsCert() {
+    isCert = true;
+    notifyListeners();
+  }
 
   @override
   String? checkValidateEmail(FocusNode focusNode, String email) {
@@ -128,7 +152,8 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   }
 
   @override
-  void checkDuplicatedEmail(String email) {
+  void checkDuplicatedEmail(
+      BuildContext context, RegisterViewModelImpl viewModel) {
     if (formKey.currentState?.validate() == true) {
       formKey.currentState?.save();
       // DB로 보내서 맞는지 확인
@@ -136,12 +161,14 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
         //goHomePage(context);
       } else {
         //setIsWrong();
+        goCertPage(context, viewModel);
       }
     }
   }
 
   @override
-  void checkDuplicatedName(String name) {
+  void checkDuplicatedName(
+      BuildContext context, RegisterViewModelImpl viewModel) {
     if (formKey.currentState?.validate() == true) {
       formKey.currentState?.save();
       // DB로 보내서 맞는지 확인
@@ -169,8 +196,10 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   @override
   void goInitialPage(BuildContext context) =>
       GoRouter.of(context).go('/initial');
+
   @override
   void goMainPage(BuildContext context) => GoRouter.of(context).go('/habit');
+
   @override
   void goEmailPage(BuildContext context) {
     PageRouteWithAnimation pageRouteWithAnimation =
@@ -179,23 +208,25 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   }
 
   @override
-  void goCertPage(BuildContext context) {
+  void goCertPage(BuildContext context, viewModel) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Cert());
+        PageRouteWithAnimation(RegisterPage_Cert(
+      viewModel: viewModel,
+    ));
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 
   @override
   void goPasswordPage(BuildContext context) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Password());
+        PageRouteWithAnimation(RegisterPage_Email());
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 
   @override
   void goNamePage(BuildContext context) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Name());
+        PageRouteWithAnimation(RegisterPage_Email());
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 

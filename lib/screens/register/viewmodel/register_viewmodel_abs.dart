@@ -1,3 +1,4 @@
+import 'package:dahae_mobile/screens/register/viewmodel/register_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 // Register ViewModel
@@ -14,14 +15,16 @@ abstract class RegisterViewModel implements Listenable {
   void setPassword(String password);
   void setName(String name);
 
-  void checkDuplicatedEmail(String email);
-  void checkDuplicatedName(String name);
+  void checkDuplicatedEmail(
+      BuildContext context, RegisterViewModelImpl viewModel);
+  void checkDuplicatedName(
+      BuildContext context, RegisterViewModelImpl viewModel);
 
   void register(BuildContext context);
 
   void goInitialPage(BuildContext context);
   void goEmailPage(BuildContext context);
-  void goCertPage(BuildContext context);
+  void goCertPage(BuildContext context, RegisterViewModelImpl viewModel);
   void goPasswordPage(BuildContext context);
   void goNamePage(BuildContext context);
   void goMainPage(BuildContext context);
