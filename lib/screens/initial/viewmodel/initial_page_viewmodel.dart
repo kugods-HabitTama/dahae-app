@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'initial_page_viewmodel_abs.dart';
 import 'package:dahae_mobile/common/util/route_animation.dart';
-import 'package:dahae_mobile/screens/login/page/login_screen.dart';
-import 'package:dahae_mobile/screens/register/register_page_email.dart';
+import 'package:dahae_mobile/screens/login/page/login_page.dart';
+import 'package:dahae_mobile/screens/register/page/register_page_email.dart';
 
 class InitialPageViewModelImpl
     with ChangeNotifier

@@ -1,9 +1,9 @@
-import 'package:dahae_mobile/data/api/auth_api.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'login_viewmodel_abs.dart';
 import 'package:dahae_mobile/common/util/validators.dart';
+import 'package:dahae_mobile/data/api/auth_api.dart';
 
 // Login Viewmodel Implement
 class LoginViewModelImpl with ChangeNotifier implements LoginViewModel {
@@ -71,7 +71,7 @@ class LoginViewModelImpl with ChangeNotifier implements LoginViewModel {
   void appleLogin(BuildContext context) {}
 
   @override
-  void goHomePage(BuildContext context) {
+  void goMainPage(BuildContext context) {
     GoRouter.of(context).go('/habit');
   }
 }

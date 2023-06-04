@@ -1,12 +1,12 @@
-import 'package:dahae_mobile/screens/login/view/login_component.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../common/util/route_animation.dart';
-import 'sign_up_password.dart';
-import 'package:dahae_mobile/common/util/validators.dart';
+import 'register_page_password.dart';
+import 'package:dahae_mobile/screens/register/view/login_component.dart';
 
-class SignUpCertScreen extends StatefulWidget {
-  const SignUpCertScreen({
+class RegisterPage_Cert extends StatefulWidget {
+  const RegisterPage_Cert({
     super.key,
     required this.email,
     required this.authCode,
@@ -16,10 +16,10 @@ class SignUpCertScreen extends StatefulWidget {
   final String authCode;
 
   @override
-  State<SignUpCertScreen> createState() => _SignUpCertScreenState();
+  State<RegisterPage_Cert> createState() => _RegisterPage_CertState();
 }
 
-class _SignUpCertScreenState extends State<SignUpCertScreen> {
+class _RegisterPage_CertState extends State<RegisterPage_Cert> {
   bool _isCert = false;
   String myAuthCode = '';
   final formKey = GlobalKey<FormState>();
@@ -49,17 +49,17 @@ class _SignUpCertScreenState extends State<SignUpCertScreen> {
           const SignUpText(text: '인증번호를', auth: true),
           SizedBox(
               height: 30, child: _isCert ? worngCertification : Container()),
-          // SignUpInputTextBox(
-          //   label: '인증번호',
-          //   focusNode: _certFocus,
-          //   isNum: true,
-          //   reSend: true,
-          //   onSaved: (val) {
-          //     myAuthCode = val;
-          //   },
-          //   onChanged: (val) {},
-          //   validator: (val) => CheckValidate.validateCertCode(_certFocus, val),
-          // ),
+          SignUpInputTextBox(
+            label: '인증번호',
+            focusNode: _certFocus,
+            isNum: true,
+            reSend: true,
+            onSaved: (val) {
+              myAuthCode = val;
+            },
+            onChanged: (val) {},
+            validator: (val) {},
+          ),
         ],
       ),
     );
@@ -74,7 +74,8 @@ class _SignUpCertScreenState extends State<SignUpCertScreen> {
           if (myAuthCode == widget.authCode) {
             _isCert = false;
             PageRouteWithAnimation pageRouteWithAnimation =
-                PageRouteWithAnimation(SignUpPWScreen(email: widget.email));
+                PageRouteWithAnimation(
+                    RegisterPage_Password(email: widget.email));
             Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
           } else {
             setState(() {

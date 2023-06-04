@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:dahae_mobile/data/api/api.dart';
 import 'package:dahae_mobile/screens/login/view/login_component.dart';
 
-class SignUpNameScreen extends StatefulWidget {
-  const SignUpNameScreen({
+class RegisterPage_Name extends StatefulWidget {
+  const RegisterPage_Name({
     super.key,
     required this.email,
     required this.password,
@@ -14,10 +14,10 @@ class SignUpNameScreen extends StatefulWidget {
   final String password;
 
   @override
-  State<SignUpNameScreen> createState() => _SignUpNameScreenState();
+  State<RegisterPage_Name> createState() => _RegisterPage_NameState();
 }
 
-class _SignUpNameScreenState extends State<SignUpNameScreen> {
+class _RegisterPage_NameState extends State<RegisterPage_Name> {
   bool _isDup = false;
   final formKey = GlobalKey<FormState>();
   //final emailController = TextEditingController();

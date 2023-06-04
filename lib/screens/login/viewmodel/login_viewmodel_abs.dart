@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 // Login ViewModel
 abstract class LoginViewModel implements Listenable {
@@ -12,7 +11,5 @@ abstract class LoginViewModel implements Listenable {
   void googleLogin(BuildContext context);
   void appleLogin(BuildContext context);
 
-  void goHomePage(BuildContext context) {
-    GoRouter.of(context).go('/habit');
-  }
+  void goMainPage(BuildContext context);
 }

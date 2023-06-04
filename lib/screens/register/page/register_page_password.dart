@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:dahae_mobile/screens/register/sign_up_name.dart';
+import 'package:dahae_mobile/screens/register/page/register_page_name.dart';
 import 'package:dahae_mobile/screens/login/view/login_component.dart';
 import 'package:dahae_mobile/common/util/route_animation.dart';
 
-class SignUpPWScreen extends StatefulWidget {
-  const SignUpPWScreen({
+class RegisterPage_Password extends StatefulWidget {
+  const RegisterPage_Password({
     super.key,
     required this.email,
   });
@@ -13,10 +13,10 @@ class SignUpPWScreen extends StatefulWidget {
   final String email;
 
   @override
-  State<SignUpPWScreen> createState() => _SignUpPWScreenState();
+  State<RegisterPage_Password> createState() => _RegisterPage_PasswordState();
 }
 
-class _SignUpPWScreenState extends State<SignUpPWScreen> {
+class _RegisterPage_PasswordState extends State<RegisterPage_Password> {
   bool _isDup = false;
   final formKey = GlobalKey<FormState>();
   //final emailController = TextEditingController();
@@ -91,7 +91,7 @@ class _SignUpPWScreenState extends State<SignUpPWScreen> {
           if (password == passwordtest) {
             PageRouteWithAnimation pageRouteWithAnimation =
                 PageRouteWithAnimation(
-                    SignUpNameScreen(email: widget.email, password: password));
+                    RegisterPage_Name(email: widget.email, password: password));
             Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
           } else {
             _isDup = true;
