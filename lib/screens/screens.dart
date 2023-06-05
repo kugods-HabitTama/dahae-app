@@ -1,4 +1,3 @@
-export 'home_scaffold.dart';
 export 'habit/habit_screen.dart';
 export 'pet/pet_screen.dart';
 export 'profile/profile_screen.dart';

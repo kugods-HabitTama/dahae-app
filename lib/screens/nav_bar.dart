@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+class HabitNavBar extends StatefulWidget {
+  const HabitNavBar({super.key});
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<HabitNavBar> createState() => _HabitNavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
+class _HabitNavBarState extends State<HabitNavBar> {
   int _menu = 0;
 
   @override

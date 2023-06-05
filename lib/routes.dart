@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'screens/screens.dart';
+import 'package:dahae_mobile/screens/nav_bar.dart';
 
 class AppRouter {
   static GoRouter get router => _router;
@@ -40,7 +41,11 @@ class AppRouter {
       ShellRoute(
         navigatorKey: _homekey,
         builder: (context, state, child) {
-          return HomeScaffold(child: child);
+          //return HomeScaffold(child: child);
+          return Scaffold(
+            body: child,
+            bottomNavigationBar: const HabitNavBar(),
+          );
         },
         routes: [
           GoRoute(
