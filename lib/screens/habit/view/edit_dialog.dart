@@ -4,10 +4,10 @@ import 'package:dahae_mobile/data/enums/day_of_week.dart';
 import 'package:dahae_mobile/data/models/habit.dart';
 
 // inner Boxes
-import './dialog/title_box.dart';
-import './dialog/days_box.dart';
-import './dialog/detail_box.dart';
-import './dialog/period_box.dart';
+import 'dialog/title_box.dart';
+import 'dialog/days_box.dart';
+import 'dialog/detail_box.dart';
+import 'dialog/period_box.dart';
 
 // const List<Widget> days = <Widget>[
 //   Text('월'),

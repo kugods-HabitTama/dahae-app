@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:dahae_mobile/data/models/habit.dart';
 import 'package:dahae_mobile/data/models/habit_record.dart';
 import 'package:dahae_mobile/data/api/api.dart';
-import 'all_habit_dropdown.dart';
-import 'calender_header.dart';
-import 'habit_record_tile.dart';
+import '../view/all_habit_dropdown.dart';
+import '../view/calender_header.dart';
+import '../view/habit_record_tile.dart';
 
 class HabitScreen extends StatefulWidget {
   final DateTime selectedDate;

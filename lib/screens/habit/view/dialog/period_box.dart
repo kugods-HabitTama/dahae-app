@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './text_box.dart';
+import 'text_box.dart';
 
 class PeriodBox extends StatefulWidget {
   final DateTime startDate;

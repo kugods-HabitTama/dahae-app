@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './text_box.dart';
+import 'text_box.dart';
 
 class detailBox extends StatelessWidget {
   const detailBox({

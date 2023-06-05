@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import 'package:dahae_mobile/data/models/user.dart';
 import 'package:dahae_mobile/data/api/api.dart';
-import 'profile_header.dart';
-import 'profile_setting.dart';
-import 'profile_component.dart';
+import '../view/profile_header.dart';
+import '../view/profile_setting.dart';
+import '../view/profile_component.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

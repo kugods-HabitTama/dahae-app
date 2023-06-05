@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+// NavBar에서 해빗, 다마고치, 프로필 창 오갈 수 있도록 함s
 class HabitNavBar extends StatefulWidget {
   const HabitNavBar({super.key});
 

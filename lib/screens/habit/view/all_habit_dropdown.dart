@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:dahae_mobile/data/models/habit.dart';
-import 'package:dahae_mobile/screens/habit/edit_dialog.dart';
+import 'package:dahae_mobile/screens/habit/view/edit_dialog.dart';
 
 class AllHabitDropdown extends StatefulWidget {
   final List<Habit> habits;
