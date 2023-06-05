@@ -25,8 +25,8 @@ abstract class RegisterViewModel implements Listenable {
   void goInitialPage(BuildContext context);
   void goEmailPage(BuildContext context);
   void goCertPage(BuildContext context, RegisterViewModelImpl viewModel);
-  void goPasswordPage(BuildContext context);
-  void goNamePage(BuildContext context);
+  void goPasswordPage(BuildContext context, RegisterViewModelImpl viewModel);
+  void goNamePage(BuildContext context, RegisterViewModelImpl viewModel);
   void goMainPage(BuildContext context);
 
   void navigatorPop(BuildContext context);

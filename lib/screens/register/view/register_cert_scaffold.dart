@@ -1,29 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/util/route_animation.dart';
-import 'register_page_password.dart';
 import 'package:dahae_mobile/screens/register/view/login_component.dart';
+import 'package:dahae_mobile/screens/register/viewmodel/register_viewmodel.dart';
 
-class RegisterPage_Cert extends StatefulWidget {
-  const RegisterPage_Cert({
-    super.key,
-    required this.email,
-    required this.authCode,
-  });
+class RegisterCertScaffold extends StatelessWidget {
+  const RegisterCertScaffold({super.key, required this.viewModel});
 
-  final String email;
-  final String authCode;
-
-  @override
-  State<RegisterPage_Cert> createState() => _RegisterPage_CertState();
-}
-
-class _RegisterPage_CertState extends State<RegisterPage_Cert> {
-  bool _isCert = false;
-  String myAuthCode = '';
-  final formKey = GlobalKey<FormState>();
-  //final emailController = TextEditingController();
-  FocusNode _certFocus = FocusNode();
+  final RegisterViewModelImpl viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +30,17 @@ class _RegisterPage_CertState extends State<RegisterPage_Cert> {
           const SizedBox(height: 25),
           const SignUpText(text: '인증번호를', auth: true),
           SizedBox(
-              height: 30, child: _isCert ? worngCertification : Container()),
+              height: 30,
+              child: viewModel.isNotCert ? worngCertification : Container()),
           SignUpInputTextBox(
             label: '인증번호',
-            focusNode: _certFocus,
+            focusNode: viewModel.certCodeFocus,
             isNum: true,
             reSend: true,
-            onSaved: (val) {
-              myAuthCode = val;
+            onSaved: (val) {},
+            onChanged: (val) {
+              viewModel.setCertCode(val);
             },
-            onChanged: (val) {},
             validator: (val) {},
           ),
         ],
@@ -66,27 +50,13 @@ class _RegisterPage_CertState extends State<RegisterPage_Cert> {
     SignUpBottomButton bottomButton = SignUpBottomButton(
       text: '인증하기',
       onPressed: () async {
-        // 입력조건 확인
-        if (formKey.currentState?.validate() == true) {
-          formKey.currentState?.save();
-          // 서버와 인증코드가 맞는지 확인
-          if (myAuthCode == widget.authCode) {
-            _isCert = false;
-            PageRouteWithAnimation pageRouteWithAnimation =
-                PageRouteWithAnimation(
-                    RegisterPage_Password(email: widget.email));
-            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-          } else {
-            setState(() {
-              _isCert = true;
-            });
-          }
-        }
+        viewModel.printEmail();
+        viewModel.goPasswordPage(context, viewModel);
       },
     );
 
     return Form(
-      key: formKey,
+      key: viewModel.certCodeFormKey,
       child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,

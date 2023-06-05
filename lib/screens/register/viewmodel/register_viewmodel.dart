@@ -12,8 +12,11 @@ import 'package:dahae_mobile/screens/register/page/register_page_name.dart';
 
 // Register Viewmodel Implement
 class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
-  final formKey = GlobalKey<FormState>();
+  final emailFormKey = GlobalKey<FormState>();
   final certCodeFormKey = GlobalKey<FormState>();
+  final passwordFormKey = GlobalKey<FormState>();
+  final nameFormKey = GlobalKey<FormState>();
+
   final emailFormFieldKey = GlobalKey<FormFieldState>();
   final certCodeFormFieldKey = GlobalKey<FormFieldState>();
   final passwordFormFieldKey = GlobalKey<FormFieldState>();
@@ -37,26 +40,47 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   String _password = '';
   String _name = '';
 
-  bool isDup = false;
-  bool isCert = false;
+  bool isEmailDup = false;
+  bool isNotCert = false;
+  bool isNotConfirm = false;
+  bool isNameDup = false;
 
   late final AuthAPI _authAPI;
 
   RegisterViewModelImpl() {
     _authAPI = AuthAPI();
   }
-
+  //test
   printEmail() {
     print(_email);
   }
 
-  setIsDup() {
-    isDup = true;
+  printPW() {
+    print(_password);
+  }
+
+  printCertCode() {
+    print(_certCode);
+  }
+
+  printName() {
+    print(_name);
+  }
+
+  ///
+
+  setIsEmailDup() {
+    isEmailDup = true;
     notifyListeners();
   }
 
-  setIsCert() {
-    isCert = true;
+  setIsNotCert() {
+    isNotCert = true;
+    notifyListeners();
+  }
+
+  setIsNotConfirm() {
+    isNotConfirm = true;
     notifyListeners();
   }
 
@@ -154,8 +178,8 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   @override
   void checkDuplicatedEmail(
       BuildContext context, RegisterViewModelImpl viewModel) {
-    if (formKey.currentState?.validate() == true) {
-      formKey.currentState?.save();
+    if (emailFormKey.currentState?.validate() == true) {
+      emailFormKey.currentState?.save();
       // DB로 보내서 맞는지 확인
       if (false) {
         //goHomePage(context);
@@ -169,8 +193,8 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   @override
   void checkDuplicatedName(
       BuildContext context, RegisterViewModelImpl viewModel) {
-    if (formKey.currentState?.validate() == true) {
-      formKey.currentState?.save();
+    if (nameFormKey.currentState?.validate() == true) {
+      nameFormKey.currentState?.save();
       // DB로 보내서 맞는지 확인
       if (false) {
         //goHomePage(context);
@@ -182,8 +206,8 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
 
   @override
   void register(BuildContext context) {
-    if (formKey.currentState?.validate() == true) {
-      formKey.currentState?.save();
+    if (nameFormKey.currentState?.validate() == true) {
+      nameFormKey.currentState?.save();
       // DB로 보내서 맞는지 확인
       if (false) {
         //goHomePage(context);
@@ -210,23 +234,21 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   @override
   void goCertPage(BuildContext context, viewModel) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Cert(
-      viewModel: viewModel,
-    ));
+        PageRouteWithAnimation(RegisterPage_Cert(viewModel: viewModel));
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 
   @override
-  void goPasswordPage(BuildContext context) {
+  void goPasswordPage(BuildContext context, viewModel) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Email());
+        PageRouteWithAnimation(RegisterPage_Password(viewModel: viewModel));
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 
   @override
-  void goNamePage(BuildContext context) {
+  void goNamePage(BuildContext context, viewModel) {
     PageRouteWithAnimation pageRouteWithAnimation =
-        PageRouteWithAnimation(RegisterPage_Email());
+        PageRouteWithAnimation(RegisterPage_Name(viewModel: viewModel));
     Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
   }
 
