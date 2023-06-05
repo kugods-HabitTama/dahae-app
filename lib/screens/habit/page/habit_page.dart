@@ -7,16 +7,16 @@ import '../view/all_habit_dropdown.dart';
 import '../view/calender_header.dart';
 import '../view/habit_record_tile.dart';
 
-class HabitScreen extends StatefulWidget {
+class HabitPage extends StatefulWidget {
   final DateTime selectedDate;
 
-  const HabitScreen({super.key, required this.selectedDate});
+  const HabitPage({super.key, required this.selectedDate});
 
   @override
-  State<HabitScreen> createState() => _HabitScreenState();
+  State<HabitPage> createState() => _HabitPageState();
 }
 
-class _HabitScreenState extends State<HabitScreen> {
+class _HabitPageState extends State<HabitPage> {
   late Future<List<HabitRecord>> habitRecords;
   late Future<List<Habit>> habits;
 
@@ -25,6 +25,7 @@ class _HabitScreenState extends State<HabitScreen> {
     return Scaffold(
       body: Column(
         children: [
+          // 날짜정보 필요
           CalenderHeader(selectedDate: widget.selectedDate),
           Flexible(
             child: FutureBuilder(
@@ -43,6 +44,7 @@ class _HabitScreenState extends State<HabitScreen> {
                       ),
                     ),
                   );
+                  // 타일 데이터 필요
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Error'));
                 } else {
@@ -70,7 +72,7 @@ class _HabitScreenState extends State<HabitScreen> {
   }
 
   @override
-  void didUpdateWidget(HabitScreen oldWidget) {
+  void didUpdateWidget(HabitPage oldWidget) {
     // 날짜 바뀌었을 때 맞춰서 서버에 요청 새로 보내는 것 결정
     super.didUpdateWidget(oldWidget);
     if (oldWidget.selectedDate != widget.selectedDate) {

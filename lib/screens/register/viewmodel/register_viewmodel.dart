@@ -253,5 +253,7 @@ class RegisterViewModelImpl with ChangeNotifier implements RegisterViewModel {
   }
 
   @override
-  void navigatorPop(BuildContext context) {}
+  void navigatorPop(BuildContext context) {
+    Navigator.pop(context);
+  }
 }

@@ -50,7 +50,7 @@ class AppRouter {
         routes: [
           GoRoute(
             path: '/habit/:year(\\d+)/:month(\\d+)/:day(\\d+)',
-            builder: (context, state) => HabitScreen(
+            builder: (context, state) => HabitPage(
               selectedDate: DateTime(
                 int.parse(state.params['year']!),
                 int.parse(state.params['month']!),

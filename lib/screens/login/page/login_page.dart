@@ -7,7 +7,7 @@ import 'package:dahae_mobile/screens/login/view/login_page_scaffold.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  late final _viewModel = LoginViewModelImpl();
+  late final viewModel = LoginViewModelImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,6 @@ class LoginPage extends StatelessWidget {
 
   Widget loginPageScaffold() {
     return ChangeNotifierProvider<LoginViewModelImpl>.value(
-        value: _viewModel, child: LoginPageScaffold());
+        value: viewModel, child: LoginPageScaffold());
   }
 }

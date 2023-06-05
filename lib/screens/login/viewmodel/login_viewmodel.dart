@@ -52,6 +52,7 @@ class LoginViewModelImpl with ChangeNotifier implements LoginViewModel {
     }
   }
 
+  @override
   void findPassword() {}
 
   @override
