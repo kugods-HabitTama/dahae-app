@@ -16,10 +16,14 @@ class HabitViewModelImpl with ChangeNotifier implements HabitViewModel {
   TextEditingController editHabitController = TextEditingController();
   TextEditingController progressController = TextEditingController();
 
-  final selectedDate = '';
+  DateTime dateNow = DateTime.now();
+  late DateTime selectedDate;
 
   @override
-  void nowDate() {}
+  void setDateNow() {
+    dateNow = DateTime.now();
+    selectedDate = dateNow;
+  }
 
   @override
   void selectDate() {}
@@ -53,4 +57,8 @@ class HabitViewModelImpl with ChangeNotifier implements HabitViewModel {
   // delete habit -> 마찬가지
   @override
   void deleteHabit() {}
+
+  // habit 설정하는 page 띄우기 -> edit인지 add인지 판단하는 함수 필요
+  @override
+  void openHabitSetting() {}
 }

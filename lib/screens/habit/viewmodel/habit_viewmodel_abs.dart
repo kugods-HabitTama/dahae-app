@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // Habit Page ViewModel
 abstract class HabitViewModel implements Listenable {
   // 날짜 관련 기능
-  void nowDate();
+  void setDateNow();
   void selectDate();
 
   // 해당 날짜의 habit 가져오기

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:dahae_mobile/common/styles/app_theme.dart';
+import 'package:dahae_mobile/common/util/scroll_glow.dart';
 import 'routes.dart';
 
 void main() async {

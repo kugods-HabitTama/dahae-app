@@ -90,5 +90,6 @@ class _HabitPageState extends State<HabitPage> {
   void _init() {
     habitRecords = getHabitRecords(widget.selectedDate);
     habits = getHabits();
+    print(widget.selectedDate);
   }
 }

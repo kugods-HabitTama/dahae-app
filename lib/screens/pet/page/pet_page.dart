@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../view/pet_header.dart';
 
-class PetScreen extends StatefulWidget {
-  const PetScreen({super.key});
+class PetPage extends StatefulWidget {
+  const PetPage({super.key});
 
   @override
-  State<PetScreen> createState() => _PetScreenState();
+  State<PetPage> createState() => _PetPageState();
 }
 
-class _PetScreenState extends State<PetScreen> {
+class _PetPageState extends State<PetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -13,7 +13,7 @@ class AppRouter {
 
   static final GoRouter _router = GoRouter(
     navigatorKey: _rootkey,
-    initialLocation: '/initial',
+    initialLocation: '/habit',
     routes: [
       GoRoute(
         path: '/',
@@ -41,7 +41,6 @@ class AppRouter {
       ShellRoute(
         navigatorKey: _homekey,
         builder: (context, state, child) {
-          //return HomeScaffold(child: child);
           return Scaffold(
             body: child,
             bottomNavigationBar: const HabitNavBar(),
@@ -60,23 +59,14 @@ class AppRouter {
           ),
           GoRoute(
             path: '/pet',
-            builder: (context, state) => PetScreen(),
+            builder: (context, state) => PetPage(),
           ),
           GoRoute(
             path: '/profile',
-            builder: (context, state) => ProfileScreen(),
+            builder: (context, state) => ProfilePage(),
           ),
         ],
       )
     ],
   );
-}
-
-// 기본적으로 SingleChildScrollView에서 파란색으로 빛나는 것 없애기 위한 코드
-class DiableScrollGlow extends ScrollBehavior {
-  @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
-    return child;
-  }
 }
