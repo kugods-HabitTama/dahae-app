@@ -1,3 +1,4 @@
+import 'package:dahae_mobile/common/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,6 +27,18 @@ class _HabitNavBarState extends State<HabitNavBar> {
         ? Image.asset("assets/icons/profile_act.png", width: 30, height: 30)
         : Image.asset("assets/icons/profile.png", width: 30, height: 30);
 
+    // var boxShadow = (_menu == 1)
+    //     ? const BoxShadow(
+    //         color: AppColors.highlightColor,
+    //         spreadRadius: 10,
+    //         blurRadius: 5,
+    //       )
+    //     : BoxShadow(
+    //         color: Colors.grey.withOpacity(0.3),
+    //         spreadRadius: 3,
+    //         blurRadius: 5,
+    //       );
+
     return Container(
       height: 80,
       decoration: BoxDecoration(
@@ -35,7 +48,7 @@ class _HabitNavBarState extends State<HabitNavBar> {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 3,
             blurRadius: 5,
-          )
+          ),
         ],
         color: Colors.white,
       ),

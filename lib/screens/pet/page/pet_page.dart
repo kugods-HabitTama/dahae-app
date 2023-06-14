@@ -1,3 +1,4 @@
+import 'package:dahae_mobile/common/styles/app_colors.dart';
 import 'package:dahae_mobile/screens/pet/view/pet_component.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _PetPageState extends State<PetPage> {
     String petName = '도담';
 
     return Scaffold(
-      backgroundColor: theme.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
           PetHeader(username: userName, petname: petName, percentage: 80),
@@ -29,7 +30,7 @@ class _PetPageState extends State<PetPage> {
                   width: 186, height: 290),
             ),
           ),
-          PetBanner(),
+          PetFooter(),
         ],
       ),
     );

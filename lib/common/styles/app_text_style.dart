@@ -7,11 +7,20 @@ import 'font_sizes.dart';
 
 abstract class AppTextStyle {
   /* Custom Font Style */
-  static const headerTitle1 =
+  static const headerTitle20 =
       TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700);
 
-  static const headerTitle2 =
+  static const headerTitle14 =
       TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.w700);
+
+  static const subTitle10 =
+      TextStyle(fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.w700);
+
+  static const pointNumber = TextStyle(
+      fontFamily: 'Inter',
+      fontSize: 28,
+      fontWeight: FontWeight.w700,
+      color: AppColors.highlightColor);
 
   /* ================= */
 
