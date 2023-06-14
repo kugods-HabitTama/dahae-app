@@ -9,6 +9,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline1    96.0  light   -1.5
   static final TextStyle headline1 = lightStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize96,
     letterSpacing: -1.5,
   );
@@ -16,6 +17,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline2    60.0  light   -0.5
   static final TextStyle headline2 = lightStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize60,
     letterSpacing: -0.5,
   );
@@ -23,6 +25,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline3    48.0  regular  0.0
   static final TextStyle headline3 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize48,
     letterSpacing: 0,
   );
@@ -30,6 +33,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline4    34.0  regular  0.25
   static final TextStyle headline4 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize34,
     letterSpacing: 0.25,
   );
@@ -37,6 +41,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline5    24.0  regular  0.0
   static final TextStyle headline5 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize24,
     letterSpacing: 0,
   );
@@ -44,6 +49,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline6    20.0  medium   0.15
   static final TextStyle headline6 = mediumStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize20,
     letterSpacing: 0.15,
   );
@@ -51,6 +57,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// subtitle1    16.0  regular  0.15
   static final TextStyle subtitle1 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize16,
     letterSpacing: 0.15,
   );
@@ -58,6 +65,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// subtitle2    14.0  medium   0.1
   static final TextStyle subtitle2 = mediumStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize14,
     letterSpacing: 0.1,
   );
@@ -65,6 +73,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// body1        16.0  regular  0.5   (bodyText1)
   static final TextStyle body1 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize16,
     letterSpacing: 0.5,
   );
@@ -72,6 +81,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// body2        14.0  regular  0.25  (bodyText2)
   static final TextStyle body2 = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize14,
     letterSpacing: 0.25,
   );
@@ -79,6 +89,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// button       14.0  medium   1.25
   static final TextStyle button = mediumStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize14,
     letterSpacing: 1.25,
   );
@@ -86,6 +97,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// caption      12.0  regular  0.4
   static final TextStyle caption = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize12,
     letterSpacing: .4,
   );
@@ -93,6 +105,7 @@ abstract class AppTextStyle {
   /// NAME         SIZE  WEIGHT  SPACING
   /// overline     10.0  regular  1.5
   static final TextStyle overline = regularStyle.copyWith(
+    fontFamily: 'Inter',
     fontSize: FontSize.fontSize10,
     letterSpacing: 1.5,
   );
