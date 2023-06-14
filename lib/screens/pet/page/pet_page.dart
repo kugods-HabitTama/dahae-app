@@ -13,16 +13,22 @@ class PetPage extends StatefulWidget {
 class _PetPageState extends State<PetPage> {
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    // mockData
+    String userName = 'Yeeun';
+    String petName = '도담';
+
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: theme.backgroundColor,
       body: Column(
         children: [
-          PetHeader(),
+          PetHeader(username: userName, petname: petName, percentage: 80),
           Expanded(
-              child: Center(
-            child:
-                Image.asset('assets/images/sorry.png', width: 200, height: 400),
-          )),
+            child: Center(
+              child: Image.asset('assets/images/pet_running.gif',
+                  width: 186, height: 290),
+            ),
+          ),
           PetBanner(),
         ],
       ),

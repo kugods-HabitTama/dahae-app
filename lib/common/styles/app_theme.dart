@@ -19,12 +19,18 @@ abstract class AppTheme {
       brightness: Brightness.light,
       primaryColor: AppColors.primaryColor,
       primaryTextTheme: AppTextStyle.textTheme,
-      backgroundColor: const Color(0xFFF5EFFF),
-      highlightColor: const Color(0xFF925FF0),
-      focusColor: const Color(0xFFC4F954),
+      backgroundColor: AppColors.backgroundColor,
+      highlightColor: AppColors.highlightColor,
+      focusColor: AppColors.pointColor,
       hintColor: const Color(0xFF969696),
-
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      buttonTheme: ButtonThemeData(
+        buttonColor: AppColors.highlightColor,
+        height: 36.h,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
       // appBarTheme: const AppBarTheme(
       //   color: AppColors.kPrimary100,
       // ),

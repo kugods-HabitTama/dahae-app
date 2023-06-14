@@ -6,6 +6,15 @@ import 'font_sizes.dart';
 // font 수정 요망
 
 abstract class AppTextStyle {
+  /* Custom Font Style */
+  static const headerTitle1 =
+      TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700);
+
+  static const headerTitle2 =
+      TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.w700);
+
+  /* ================= */
+
   /// NAME         SIZE  WEIGHT  SPACING
   /// headline1    96.0  light   -1.5
   static final TextStyle headline1 = lightStyle.copyWith(
