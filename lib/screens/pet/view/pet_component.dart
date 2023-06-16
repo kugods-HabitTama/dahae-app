@@ -1,72 +1,96 @@
+import 'package:dahae_mobile/common/styles/app_colors.dart';
+import 'package:dahae_mobile/common/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-class MyClipper extends CustomClipper<Rect> {
+class PetFooter extends StatefulWidget {
   @override
-  Rect getClip(Size size) {
-    return Rect.fromLTWH(0, 0, size.width, size.height);
-  }
+  _PetFooterState createState() => _PetFooterState();
 
-  // Rect getCircle(Size size) {
-  //   return Rect.fromCircle(center: center, radius: radius);
+  // void updateExp() {
+  //   setState(() {});
   // }
+}
 
+class _PetFooterState extends State<PetFooter> {
   @override
-  bool shouldReclip(CustomClipper<Rect> oldClipper) {
-    return false;
+  Widget build(BuildContext context) {
+    return Container(
+      height: 252,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          PetStats(),
+          const SizedBox(height: 6),
+          PetActions(),
+        ],
+      ),
+    );
   }
 }
 
-class BannerCircle extends StatelessWidget {
-  BannerCircle({
-    super.key,
-    required this.label,
-    required this.main,
-    this.labelEnd = '',
-  });
+/* Pet 애정도, 경험치 stats  */
+class PetStats extends StatefulWidget {
+  @override
+  _PetStatsState createState() => _PetStatsState();
+}
 
-  final String label;
-  final String main;
-  final String labelEnd;
+class _PetStatsState extends State<PetStats> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 70,
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 9, horizontal: 30),
+      decoration: BoxDecoration(
+        color: AppColors.highlightColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        PercentWrapper(
+          flex: 1,
+          title: "애정도",
+          value: 50,
+        ),
+        const SizedBox(width: 16),
+        PercentWrapper(
+          flex: 2,
+          title: "경험치",
+          value: 100,
+        ),
+      ]),
+    );
+  }
+}
+
+class PercentWrapper extends StatelessWidget {
+  final int flex;
+  final String title;
+  final int value;
+
+  PercentWrapper(
+      {super.key,
+      required this.flex,
+      required this.title,
+      required this.value});
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-
-    return ClipOval(
-      clipper: MyClipper(),
+    return Expanded(
+      flex: flex,
       child: Container(
-        height: 80,
-        width: 80,
-        color: Color(0xFFFEFEFE),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.primaryColor,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              label,
-              style: themeData.textTheme.subtitle2?.copyWith(fontSize: 9),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 2),
-              child: Text(
-                main,
-                style: labelEnd != ''
-                    ? themeData.textTheme.bodyText1
-                        ?.copyWith(fontWeight: FontWeight.w700, fontSize: 16)
-                    : themeData.textTheme.bodyText1
-                        ?.copyWith(fontWeight: FontWeight.w700, fontSize: 20),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-              child: labelEnd != ''
-                  ? Text(
-                      labelEnd,
-                      style:
-                          themeData.textTheme.subtitle2?.copyWith(fontSize: 9),
-                    )
-                  : Container(),
-            )
+            Text(title,
+                textAlign: TextAlign.start, style: AppTextStyle.subTitle10),
+            Text("$value %",
+                textAlign: TextAlign.center, style: AppTextStyle.pointNumber),
           ],
         ),
       ),
@@ -74,31 +98,89 @@ class BannerCircle extends StatelessWidget {
   }
 }
 
-class PetBanner extends StatelessWidget {
-  const PetBanner({super.key});
+/* Pet 상호작용 버튼 Wrapper */
+class PetActions extends StatefulWidget {
+  @override
+  _PetActionsState createState() => _PetActionsState();
+}
+
+class _PetActionsState extends State<PetActions> {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 170,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+          color: AppColors.highlightColor,
+        ),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            InteractionWrapper(title: "title"),
+            InteractionWrapper(title: "title2"),
+            InteractionWrapper(title: "title3"),
+            InteractionWrapper(title: "title4"),
+            InteractionWrapper(title: "title5"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InteractionWrapper extends StatelessWidget {
+  final String title;
+
+  const InteractionWrapper({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            BannerCircle(label: '애정도', main: '80%'),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 7),
-              child: BannerCircle(
-                label: '현재는',
-                main: '유아기',
-                labelEnd: '입니다.',
-              ),
-            ),
-            BannerCircle(label: '경험치', main: '80%'),
-          ],
+    return Container(
+      height: 137,
+      width: 84,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          ActionButton(
+            onClick: () {
+              debugPrint('Click : $title');
+            },
+          ),
+          const SizedBox(height: 14),
+          Text(title, style: AppTextStyle.body1),
+        ],
+      ),
+    );
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  final VoidCallback onClick;
+
+  const ActionButton({
+    super.key,
+    required this.onClick,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onClick(),
+      child: Container(
+        width: 84,
+        height: 103,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: AppColors.primaryColor,
         ),
-        SizedBox(height: 45),
-      ],
+      ),
     );
   }
 }
